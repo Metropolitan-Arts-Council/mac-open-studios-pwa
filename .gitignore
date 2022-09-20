@@ -1,0 +1,33 @@
+node_modules
+.zip
+.tar*
+
+# Environment
+.env
+.env.backup
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+auth.json
+
+# Source Maps
+*.css.map
+*.js.map
+
+# OS
+*~
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.idea
+.settings
+.project
+.build
+.vscode
+
+# File Types
+*.log
+*.zip
+.svn
