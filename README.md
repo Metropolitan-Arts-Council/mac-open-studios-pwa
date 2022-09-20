@@ -18,6 +18,10 @@ npm run build
 npm run build --report
 ```
 
+## Google
+
+Maps API key is using Netlify env vars.
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ```html
