@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <header class="home-header">
-            <img src="/static/images/logo-2021.jpg" alt="Greenville Open Studios" />
+            <img src="/static/images/logo-2022.png" alt="Greenville Open Studios" />
         </header>
         <div class="home-container">
             <ul class="home-list">

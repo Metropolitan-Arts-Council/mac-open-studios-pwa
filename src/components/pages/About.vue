@@ -4,14 +4,14 @@
             <img class="limit-image center-image" src="/static/images/logo-2021.jpg" alt="Greenville Open Studios">
             <h3 class="page-title">Hours</h3>
             <p>
-              Saturday, November 13: 10:00 a.m. - 6:00 p.m.<br>
-              Sunday, November 14: Noon - 6:00 p.m.
+              Saturday, November 12: 10:00 a.m. - 6:00 p.m.<br>
+              Sunday, November 13: Noon - 6:00 p.m.
             </p>
-            <p><img style="height: 18px; width: auto; vertical-align: middle" src="/static/icons/preview-filter.png" alt="Preview Day" /> *Saturday, November 6 (select artists only): 10:00 a.m. - 6:00 p.m.</p>
+<!--            <p><img style="height: 18px; width: auto; vertical-align: middle" src="/static/icons/preview-filter.png" alt="Preview Day" /> *Saturday, November 6 (select artists only): 10:00 a.m. - 6:00 p.m.</p>-->
             <h3 class="page-title">Resources</h3>
-            <p>Find a copy of the 2021 catalogue at various retail locations throughout the Greenville area, in the artists' studios and in the November 5 issue of the Greenville Journal.</p>
+            <p>Find a copy of the 2022 catalogue at various retail locations throughout the Greenville area, in the artists' studios and in the November 5 issue of the Greenville Journal.</p>
             <h3 class="page-title">About</h3>
-            <p>Greenville Open Studios allows you to experience the life of local artists at work in their studios November 13 & 14. This free, self-guided tour is a unique experience to engage with our community’s incredible talent, learn about artistic processes and become inspired.</p>
+            <p>Greenville Open Studios allows you to experience the life of local artists at work in their studios November 12 & 13. This free, self-guided tour is a unique experience to engage with our community’s incredible talent, learn about artistic processes and become inspired.</p>
             <p>This year’s event showcases the work of 139 artists in 96 locations. All studios are located within a 15-mile radius of downtown Greenville with Easley, Greer, Travelers Rest and Simpsonville included.</p>
             <p>Please visit our website for more information.</p>
             <h3 class="page-title">Contact Information</h3>
