@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-info">
-            <img class="limit-image center-image" src="/static/images/logo-2021.jpg" alt="Greenville Open Studios">
+            <img class="limit-image center-image" src="/static/images/logo-2022.png" alt="Greenville Open Studios">
             <h3 class="page-title">Hours</h3>
             <p>
               Saturday, November 12: 10:00 a.m. - 6:00 p.m.<br>
