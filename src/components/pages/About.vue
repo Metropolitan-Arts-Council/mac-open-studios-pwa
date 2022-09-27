@@ -7,7 +7,7 @@
               Saturday, November 12: 10:00 a.m. - 6:00 p.m.<br>
               Sunday, November 13: Noon - 6:00 p.m.
             </p>
-<!--            <p><img style="height: 18px; width: auto; vertical-align: middle" src="/static/icons/preview-filter.png" alt="Preview Day" /> *Saturday, November 6 (select artists only): 10:00 a.m. - 6:00 p.m.</p>-->
+            <p><img style="height: 18px; width: auto; vertical-align: middle" src="/static/icons/preview-filter.png" alt="Preview Day" /> *Saturday, November 6 (select artists only): 10:00 a.m. - 6:00 p.m.</p>
             <h3 class="page-title">Resources</h3>
             <p>Find a copy of the 2022 catalogue at various retail locations throughout the Greenville area, in the artists' studios and in the November 5 issue of the Greenville Journal.</p>
             <h3 class="page-title">About</h3>
