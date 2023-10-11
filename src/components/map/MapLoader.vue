@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <div>
         <div id="map" class="map-box" :class="{ secondary: isSecondary }"></div>
         <template v-if="!!this.google && !!this.map">
             <slot
@@ -7,7 +7,7 @@
                 :map="map"
             />
         </template>
-    </span>
+    </div>
 </template>
 
 <script>
