@@ -6,11 +6,11 @@
             :isSecondary="showPanel"
             ref="loader"
         >
-            <template slot-scope="scopeProps">
+            <template v-slot="data">
                 <child-marker
                     :position="mapConfig.center"
-                    :google="scopeProps.google"
-                    :map="scopeProps.map"
+                    :google="data.google"
+                    :map="data.map"
                     :extra="macOptions"
                     :isMAC="true"
                 />
@@ -19,8 +19,8 @@
                     :key="i"
                     :position="marker"
                     :activeMarker="activeMarker"
-                    :google="scopeProps.google"
-                    :map="scopeProps.map"
+                    :google="data.google"
+                    :map="data.map"
                     @show="showArtists(i, $event)"
                     ref="childMarkers"
                 />
@@ -91,6 +91,8 @@
           return this.$store.getters.locations || []
         },
         markers() {
+          console.log(this.locations.length)
+
           return this.locations.map(artists => {
             return {
               lat: artists[0].address.lat,
@@ -239,9 +241,13 @@
 
         deactivateChildren() {
           console.log('deactivating children')
-          this.markers.forEach((marker, index) => {
-            this.$refs.childMarkers[index].deactivate()
-          })
+
+          if(this.markers.length > 0) {
+            this.markers.forEach((marker, index) => {
+              console.log(index)
+              this.$refs.childMarkers[index].deactivate()
+            })
+          }
         }
       }
     }

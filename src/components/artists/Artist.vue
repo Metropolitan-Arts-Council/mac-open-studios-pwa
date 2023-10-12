@@ -176,13 +176,11 @@
           let address_param = encodeURIComponent(addr.address1 + ' ' + addr.state + ' ' + addr.state_zip);
           window.open(`maps://maps.google.com/maps?daddr=${address_param}&amp;ll=`);
         }
-        else if( (navigator.platform.indexOf('iPhone') !== -1)
-          || (navigator.platform.indexOf('iPod') !== -1)
-          || (navigator.platform.indexOf('iPad') !== -1)) {
-          window.open(`maps://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
+        else if( window.navigator.userAgent.indexOf('Win') === -1) {
+          window.open(`https://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
         }
         else {
-          window.open(`http://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
+          window.open(`maps://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
         }
       },
       goToProfile() {
