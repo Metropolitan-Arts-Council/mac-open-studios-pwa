@@ -1,8 +1,8 @@
 <template>
-    <span>
+    <div>
         <header class="map-panel-header">
             <button class="map-panel-back button-blank" @click="goBack">Back</button>
-            <img class="map-panel-image" :src="artist.image" role="presentation" />
+            <img alt="artist image" class="map-panel-image" :src="artist.image || artist.image_thumb " role="presentation" />
         </header>
         <Artist
             :artist="artist"
@@ -12,7 +12,7 @@
             :showAddress="true"
             :showListingNumber="false"
         />
-    </span>
+    </div>
 </template>
 
 <script>

@@ -170,17 +170,22 @@
         const addr = this.artist.address;
         const lat = addr.lat
         const lng = addr.lng
+        let location = '';
 
-        console.log( addr);
         if (!lat || !lng) {
           let address_param = encodeURIComponent(addr.address1 + ' ' + addr.state + ' ' + addr.state_zip);
-          window.open(`maps://maps.google.com/maps?daddr=${address_param}&amp;ll=`);
+          location = `maps.google.com/maps?daddr=${address_param}&amp;ll=`;
+        } else {
+          location = `maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`;
         }
-        else if( window.navigator.userAgent.indexOf('Win') === -1) {
-          window.open(`https://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
+
+        console.log(location);
+
+        if( window.navigator.userAgent.indexOf('Win') !== -1) {
+          window.open(`https://${location}`);
         }
         else {
-          window.open(`maps://maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`);
+          window.open(`maps://${location}`);
         }
       },
       goToProfile() {
