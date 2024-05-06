@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@googlemaps/markerclusterer": "^2.5.3",
     "@pinia/nuxt": "^0.5.1",
     "moment": "^2.30.1",
     "nuxt": "^3.11.2",

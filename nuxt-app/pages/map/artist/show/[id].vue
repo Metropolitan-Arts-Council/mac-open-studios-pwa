@@ -38,10 +38,7 @@ const center = () => {
     && artist.value.address.lat
     && artist.value.address.lng
   ) {
-    emit('center', {
-      lat: artist.value.address.lat,
-      lng: artist.value.address.lng
-    })
+    emit('center', artist.value.id)
   }
 };
 
