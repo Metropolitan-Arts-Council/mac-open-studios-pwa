@@ -35,7 +35,6 @@ const isMarkerCentered = (markerPosition, mapCenter) => {
 }
 
 const makeActive = () => {
-  console.log('make active')
   marker.value.setIcon(Object.assign({}, icon.value, { url: props.iconUrlActive }))
 };
 const deactivate = () => {

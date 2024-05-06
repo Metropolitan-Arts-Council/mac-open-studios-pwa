@@ -87,8 +87,6 @@ const locations = computed(() => {
   return artistsStore.locations || []
 });
 const markers = computed(() => {
-  console.log('markers', locations.value.length)
-
   return locations.value.map(artists => {
     return {
       lat: artists[0].address.lat,
@@ -98,11 +96,9 @@ const markers = computed(() => {
 });
 
 const togglePanel = () => {
-  console.log(route.name);
   data.showPanel = ['map-artists-list-ids', 'map-artist-show-id'].includes(route.name);
 };
 const showArtists = (index, activeMarker) => {
-  console.log('route', route);
   let artists = locations.value[index];
   data.activeMarker = activeMarker;
 
@@ -131,7 +127,6 @@ const recenter = (position, retry) => {
   if (_.isNull(loader.value.data.map)) {
     setTimeout(() => {
       recenter(position, ++retry);
-      console.log('attempting a retry', retry);
     }, 10)
   } else {
     deactivateChildren();
@@ -191,7 +186,6 @@ const toggleFavorites = () => {
       locations.value.forEach((artists, index) => {
         artists.forEach(artist => {
           if (favorites.includes(artist.id)) {
-            console.log('Artist is favorited')
             foundMarkerIndexes.push(index)
           }
         })
@@ -207,7 +201,6 @@ const toggleFavorites = () => {
 const deactivateChildren = () => {
   if(markers.value.length > 0) {
     markers.value.forEach((marker, index) => {
-      console.log(index)
       childMarkers.value[index].deactivate()
     })
   }
@@ -215,12 +208,9 @@ const deactivateChildren = () => {
 
 watch(() => route.name, () => {
   const {name} = route;
-  console.log('router watcher triggered');
-
   togglePanel(name);
 
   if (name === 'map') {
-    console.log('To Map');
     deactivateChildren();
   }
 });
