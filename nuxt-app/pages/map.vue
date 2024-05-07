@@ -60,7 +60,7 @@ const markers = computed(() => {
 });
 
 const togglePanel = () => {
-  data.showPanel = ['map-artists-list-ids', 'map-artist-show-id'].includes(route.name);
+  data.showPanel = ['map-artist-list-ids', 'map-artist-show-id'].includes(route.name);
 };
 const showArtists = (id) => {
   if (Array.isArray(id)) {
