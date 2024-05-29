@@ -7,7 +7,8 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const mapConfig = reactive({
     mapId: 'main',
     center: { lat: 34.844021, lng: -82.404925, },
-    zoom: 16,
+    zoom: 14,
+    maxZoom: 16,
     styles: [
       {
         featureType: "poi",
