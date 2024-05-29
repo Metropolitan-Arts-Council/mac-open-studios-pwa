@@ -1,18 +1,19 @@
-import {ref} from "vue";
-import service from '../app.service.js';
+import {useStorage} from "@vueuse/core";
 
 export const useFavoritesStore = defineStore('favoritesStore', () => {
-  const favorites = ref([]);
+  const favorites = useStorage('favorites', []);
 
   const getFavorites = () => {
-    return service.getFavorites().then(favorites => {
-      favorites.value = favorites;
-    }).catch(error => console.log(error));
+    return favorites.value;
   };
-  const toggleFavorite = () => {
-    return service.toggleFavorite(artist_id).then(favorites => {
-      favorites.value = favorites;
-    }).catch(error => console.log(error));
+  const toggleFavorite = (artist_id) => {
+    if (favorites.value.includes(artist_id)) {
+      favorites.value.splice(favorites.value.indexOf(artist_id), 1);
+    } else {
+      favorites.value.push(artist_id);
+    }
+
+    return favorites.value;
   };
 
   return {favorites, getFavorites, toggleFavorite};

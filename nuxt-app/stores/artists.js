@@ -1,5 +1,3 @@
-import service from '../app.service.js';
-
 function groupBy( array , fnc ) {
   let groups = {};
   array.forEach(item => {
@@ -13,12 +11,13 @@ function groupBy( array , fnc ) {
 }
 
 export const useArtistsStore = defineStore('artistsStore', () => {
+  const config = useRuntimeConfig();
+  const hasLoaded = ref(false);
   const artists = ref([]);
   const meta = ref([]);
 
   const mediums = computed(() => meta.value.mediums);
   const locations = computed(() => {
-    console.log('artist store locations');
     // filter out artists without a location
     let grouped_artists = artists.value.filter(artist => {
       return artist.address
@@ -33,13 +32,17 @@ export const useArtistsStore = defineStore('artistsStore', () => {
   });
 
   const getArtists = () => {
-    return service.fetchArtists().then(response => {
+    const url = `${config.public.apiDomain}${config.public.apiArtists}`;
+
+    return $fetch(url).then(response => {
       artists.value = response.items;
       meta.value = response.meta;
+      hasLoaded.value = true;
     }).catch(error => console.log(error));
   };
 
   return {
-    artists, meta, mediums, locations, getArtists
+    hasLoaded, artists,
+    meta, mediums, locations, getArtists
   };
 });

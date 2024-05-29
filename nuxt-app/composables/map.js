@@ -1,8 +1,8 @@
 import {Loader} from "@googlemaps/js-api-loader";
-import Config from "~/app.config.js";
 import {MarkerClusterer} from "@googlemaps/markerclusterer";
 
 export function useMap(onMarkerClick = () => {}, onClusterClick) {
+  const config = useRuntimeConfig();
   const url = useRequestURL();
   const mapConfig = reactive({
     mapId: 'main',
@@ -19,9 +19,9 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const defaultIconSrc = `${url.origin}/icons/marker-location.png`;
   const activeIconSrc = `${url.origin}/icons/marker-location-active.png`
   const google = ref();
-  const map = ref();
   const markers = ref([]);
-  const cluster = ref();
+  let map = null;
+  let cluster = null;
 
   const Map = ref();
   const AdvancedMarkerElement = ref();
@@ -38,7 +38,7 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const load = async () => {
     if (!google.value) {
       const loader = new Loader({
-        apiKey: Config.googleMapsKey,
+        apiKey: config.public.googleMapsKey,
         version: "weekly",
       });
       google.value = await loader.load();
@@ -54,10 +54,17 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
     }
   };
   const initialize = (el) => {
-    map.value = new Map.value(
+    map = new Map.value(
       el,
       toRaw(mapConfig),
     );
+
+    cluster = new MarkerClusterer({
+      map: map,
+      onClusterClick: (event, cluster, map) => {
+        onClusterClick(cluster);
+      },
+    });
   };
   const addMarker = (mrkr) => {
     const marker = {
@@ -72,7 +79,7 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
     const markerEl = new AdvancedMarkerElement.value({
       position: toRaw(marker.position),
       content: iconImg,
-      map: toRaw(map.value),
+      map: map,
       title: marker.title,
     });
 
@@ -88,7 +95,7 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
     const markerEl = markers.value.find(m => m.title * 1 === markerId * 1);
     console.log(markerEl, markerId);
 
-    map.value.setCenter(markerEl.position);
+    map.setCenter(markerEl.position);
 
     markers.value.forEach(m => {
       m.content.src = defaultIconSrc;
@@ -99,27 +106,24 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
     markerEl.content.src = activeIconSrc;
   };
   const wrapInCluster = () => {
-    if (cluster.value) {
-      cluster.value.clearMarkers();
-      cluster.value.setMap(null);
-      cluster.value = null;
-    }
-
-    cluster.value = new MarkerClusterer({
-      markers: markers.value,
-      map: toRaw(map.value),
-      onClusterClick: (event, cluster, map) => {
-        onClusterClick(cluster);
-      },
-    });
+    cluster.addMarkers(markers.value);
+    cluster.render();
   };
+  const showMarker = (markerId) => {
+    const marker = markers.value.find(m => `${m.title}` === `${markerId}`);
+    cluster.addMarker(marker);
+  }
+  const hideMarker = (markerId) => {
+    const marker = markers.value.find(m => `${m.title}` === `${markerId}`);
+    cluster.removeMarker(marker);
+  }
 
   return {
+    markers,
     mapConfig,
     load, initialize,
     google, map,
     addMarker, wrapInCluster,
-    activateMarker,
-    // AdvancedMarkerElement, PinElement,
+    activateMarker, showMarker, hideMarker
   };
 }

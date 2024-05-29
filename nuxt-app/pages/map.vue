@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div ref="loader">
+    <div v-if="artistsStore.hasLoaded" ref="loader">
       <div id="map" class="map-box" :class="{ secondary: data.showPanel }"></div>
     </div>
 
@@ -23,6 +23,7 @@
 <script setup>
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
+import {onMounted} from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -39,24 +40,14 @@ const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
 
 const loader = ref();
-const childMarkers = ref();
 
 const data = reactive({
-  map: null,
   showPanel: false,
   filterFavorited: false,
 });
 
 const locations = computed(() => {
   return artistsStore.locations || []
-});
-const markers = computed(() => {
-  return locations.value.map(artists => {
-    return {
-      lat: artists[0].address.lat,
-      lng: artists[0].address.lng
-    }
-  })
 });
 
 const togglePanel = () => {
@@ -85,7 +76,7 @@ const recenter = (position, retry) => {
   // can trigger the event before the map has rendered.
   // Doing a little retry loop here gives the map
   // a chance to catch up.
-  if (!mapStore.map.value) {
+  if (!mapStore.map) {
     setTimeout(() => {
       recenter(position, ++retry);
     }, 10)
@@ -97,28 +88,15 @@ const toggleFavorites = () => {
   const favorites = favoritesStore.favorites || []
 
   if (data.filterFavorited === false) {
-    markers.value.forEach((marker, index) => {
-      childMarkers.value[index].visible(true)
-    })
+    artistsStore.artists.forEach(artist => {
+      mapStore.showMarker(artist.id);
+    });
   } else {
-    if (favorites.length === 0) {
-      childMarkers.value[index].visible(false)
-    } else {
-      const foundMarkerIndexes = []
+    artistsStore.artists.forEach(artist => {
+      if (favorites.includes(artist.id)) return;
 
-      locations.value.forEach((artists, index) => {
-        artists.forEach(artist => {
-          if (favorites.includes(artist.id)) {
-            foundMarkerIndexes.push(index)
-          }
-        })
-      })
-
-      // Now, loop through all markers and either turn them on or off
-      markers.value.forEach((marker, index) => {
-        childMarkers.value[index].visible(foundMarkerIndexes.includes(index))
-      })
-    }
+      mapStore.hideMarker(artist.id);
+    });
   }
 }
 
@@ -131,9 +109,7 @@ watch(() => route.name, () => {
   }
 });
 
-watch(() => data.filterFavorited, () => {
-  toggleFavorites();
-});
+watch(() => data.filterFavorited, toggleFavorites);
 
 onMounted(async () => {
   await mapStore.load();
