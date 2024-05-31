@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     public: {
       apiDomain: '',
       apiArtists: '',
+      apiPages: '',
       googleMapsKey: '',
     }
   }
