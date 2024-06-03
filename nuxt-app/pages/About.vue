@@ -12,3 +12,11 @@ const { data } = useFetch(url);
 
 const page = computed(() => data.value?.about);
 </script>
+
+<style>
+.page-info h3 {
+  padding-right: 30px;
+  font-family: "Bebas";
+  color: var(--orange);
+}
+</style>
