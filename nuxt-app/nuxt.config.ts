@@ -48,6 +48,11 @@ export default defineNuxtConfig({
         },
       ],
     },
+    injectManifest: {
+      globPatterns: [
+        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf}',
+      ],
+    },
     devOptions: {
       enabled: true,
       type: 'module',
