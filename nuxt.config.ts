@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ['@pinia/nuxt', "@vite-pwa/nuxt"],
   alias: {
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
@@ -12,6 +12,11 @@ export default defineNuxtConfig({
       apiPages: '',
       googleMapsKey: '',
     }
+  },
+  app: {
+    head: {
+      viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+    },
   },
   pwa: {
     client: {

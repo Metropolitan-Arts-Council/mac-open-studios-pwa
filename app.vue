@@ -1,14 +1,13 @@
 <template>
   <div id="container">
     <Head>
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>Greenville Arts Openstudios</title>
-      <meta name="description" content="Greenville Arts Openstudios" />
+      <Title>Greenville Arts Openstudios</Title>
+      <Meta name="description" content="Greenville Arts Openstudios" />
 
-      <link rel="icon" href="/img/favicon.ico">
-      <link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" sizes="180x180">
-      <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
-      <meta name="theme-color" content="#ffffff">
+      <Link rel="icon" href="/img/favicon.ico" />
+      <Link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" sizes="180x180" />
+      <Link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF" />
+      <Meta name="theme-color" content="#ffffff" />
     </Head>
 
     <VitePwaManifest />
