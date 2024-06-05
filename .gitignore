@@ -1,33 +1,24 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
 node_modules
-.zip
-.tar*
 
-# Environment
-.env
-.env.backup
-.phpunit.result.cache
-npm-debug.log
-yarn-error.log
-auth.json
-
-# Source Maps
-*.css.map
-*.js.map
-
-# OS
-*~
-.DS_Store*
-ehthumbs.db
-Thumbs.db
-
-# IDE
-.idea
-.settings
-.project
-.build
-.vscode
-
-# File Types
+# Logs
+logs
 *.log
-*.zip
-.svn
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example

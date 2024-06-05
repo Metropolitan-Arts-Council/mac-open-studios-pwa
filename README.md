@@ -1,36 +1,75 @@
-# mac-pwa
+# Nuxt 3 Minimal Starter
 
-> A Vue.js project
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Build Setup
+## Setup
 
-``` bash
-# install dependencies
+Make sure to install the dependencies:
+
+```bash
+# npm
 npm install
 
-# serve with hot reload at localhost:8080
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
 npm run dev
 
-# build for production with minification
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
 ```
 
-## Google
+Locally preview production build:
 
-Maps API key is using Netlify env vars.
+```bash
+# npm
+npm run preview
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# pnpm
+pnpm run preview
 
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-96909942-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+# yarn
+yarn preview
 
-  gtag('config', 'UA-96909942-2');
-</script>
+# bun
+bun run preview
 ```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
