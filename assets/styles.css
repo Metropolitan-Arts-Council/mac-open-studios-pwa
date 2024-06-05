@@ -26,6 +26,8 @@ body {
   font-size: 13px;
   line-height: 1.5em;
   font-family: "FrancophilSans", sans-serif;
+
+  overscroll-behavior-y: contain;
 }
 
 /* LAYOUT */
@@ -42,12 +44,12 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  height: calc(100vh - 60px);
+  height: calc(100dvh - 60px - env(safe-area-inset-bottom));
 }
 
-.scrollview > div {
-  height: 100%;
-}
+/*.scrollview > div {*/
+/*  height: 100%;*/
+/*}*/
 
 /* TYPOGRAPHY */
 
@@ -216,6 +218,9 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
+  padding-right: env(safe-area-inset-right);
+  padding-left: env(safe-area-inset-left);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .tabbar ul {
@@ -256,9 +261,9 @@ button {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-direction: column;
-  height: calc(100vh - 60px);
+  min-height: calc(100dvh - 60px);
 }
 
 .home-header {
@@ -268,6 +273,11 @@ button {
 .home-header img {
   width: 100%;
   max-width: 320px;
+}
+
+.home-container {
+  margin: auto;
+  flex-grow: 1;
 }
 
 .home-footer {
@@ -815,7 +825,7 @@ button {
   background-image: url(images/no-results-blank.jpg);
   padding-top: 50px;
   text-align: center;
-  height: calc(100vh - 150px);
+  height: calc(100dvh - 150px);
 }
 
 .results-blank-title {
@@ -899,7 +909,7 @@ button {
 /* MAP PANEL */
 
 .map-panel {
-  height: 60vh;
+  height: 60dvh;
   padding: 20px 20px 60px 20px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -1093,10 +1103,6 @@ button {
   width: 100%;
 }
 
-.home-container {
-    margin: auto;
-}
-
 .bring-your-mask {
     width: calc(60vw + 40px);
     max-width: 320px;
@@ -1258,4 +1264,8 @@ button {
 
 .pill.blue, .pill:hover {
     background-color: #4c9dc7;
+}
+
+@media (display-mode: standalone) {
+
 }
