@@ -16,16 +16,6 @@
       <KeepAlive>
         <NuxtPage/>
       </KeepAlive>
-
-      <!--<ClientOnly>-->
-      <!--  <div v-if="$pwa">-->
-      <!--    <div v-show="$pwa.needRefresh">-->
-      <!--      <span>New content available, click on reload button to update.</span>-->
-
-      <!--      <button @click="$pwa.updateServiceWorker()">Reload</button>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--</ClientOnly>-->
     </div>
 
     <TabBar />
@@ -36,29 +26,6 @@
 import '~/assets/styles.css';
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
-
-const { $pwa } = useNuxtApp();
-
-function spillPwa() {
-  console.log('PWA:', {
-    getSWRegistration: $pwa.getSWRegistration(),
-    isInstalled: $pwa.isInstalled,
-    isPWAInstalled: $pwa.isPWAInstalled,
-    needRefresh: $pwa.needRefresh,
-    offlineReady: $pwa.offlineReady,
-    registrationError: $pwa.registrationError,
-    showInstallPrompt: $pwa.showInstallPrompt,
-    swActivated: $pwa.swActivated,
-  });
-}
-
-onMounted(() => {
-  spillPwa();
-  if ($pwa.offlineReady)
-    alert('App ready to work offline');
-});
-
-watch($pwa, spillPwa);
 
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
