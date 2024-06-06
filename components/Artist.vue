@@ -3,16 +3,8 @@
         <div class="results-item-preview" v-if="showPreview">
             <img
                 class="results-item-image"
-                :src="artist.image"
+                :src="imgSrc"
                 alt="Photo of artist"
-                v-if="showImage"
-                @click="goToProfile"
-            />
-            <img
-                class="results-item-image"
-                :src="artist.image_thumb"
-                alt="Photo of artist"
-                v-if="showImageThumb"
                 @click="goToProfile"
             />
             <button
@@ -163,6 +155,10 @@ const hostname = computed(() => {
 
     return tmp.hostname;
   });
+const imgSrc = computed(() => {
+  return 'https://borked';
+  return props.showImage ? props.artist.image : props.artist.image_thumb;
+});
 
 const favorite = () => favoritesStore.toggleFavorite(props.artist.id);
 const openMap = () => {
