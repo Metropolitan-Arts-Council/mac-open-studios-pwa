@@ -156,7 +156,6 @@ const hostname = computed(() => {
     return tmp.hostname;
   });
 const imgSrc = computed(() => {
-  return 'https://borked';
   return props.showImage ? props.artist.image : props.artist.image_thumb;
 });
 
