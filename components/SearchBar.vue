@@ -3,7 +3,7 @@
         <div class="search-box">
             <input class="search-input" placeholder="Search by Name" v-model="data.searchString" />
             <button class="search-input-icon button-blank">
-                <img src="/icons/search.png" alt="Search" />
+                <img src="~/assets/icons/search.png" alt="Search" />
             </button>
         </div>
         <ul class="search-filters">
@@ -14,7 +14,7 @@
                     @click="filter('Accessible')"
                 >
                     Accessible
-                    <img src="/icons/accessible-white.png" alt="Accessible" />
+                    <img src="~/assets/icons/accessible-white.png" alt="Accessible" />
                 </button>
             </li>
             <li v-if="data.useFilterAppointmentOnly">
@@ -24,7 +24,7 @@
                     @click="filter('AppointmentOnly')"
                 >
                     By Appointment Only
-                    <img src="/icons/appointment-filter.png" alt="By Appointment Only" />
+                    <img src="~/assets/icons/appointment-filter.png" alt="By Appointment Only" />
                 </button>
             </li>
             <li>
@@ -34,7 +34,7 @@
                   @click="filter('PreviewDay')"
               >
                 By Preview Day
-                <img src="/icons/preview-filter.png" alt="Preview Day" />
+                <img src="~/assets/icons/preview-filter.png" alt="Preview Day" />
               </button>
             </li>
             <!-- <li>
@@ -44,7 +44,7 @@
                     @click="filter('OpenFriday')"
                 >
                     Open Friday
-                    <img src="/icons/friday-white.png" alt="Open Friday" />
+                    <img src="~/assets/icons/friday-white.png" alt="Open Friday" />
                 </button>
             </li> -->
             <li>

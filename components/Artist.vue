@@ -20,8 +20,8 @@
                 :class="{ active: isFavorited }"
                 @click="favorite"
             >
-                <img src="/icons/favorite-outline.png" v-show="!isFavorited" />
-                <img src="/icons/favorite-filled.png" v-show="isFavorited" />
+                <img src="~/assets/icons/favorite-outline.png" v-show="!isFavorited" />
+                <img src="~/assets/icons/favorite-filled.png" v-show="isFavorited" />
                 <span>Favorite</span>
             </button>
         </div>
@@ -31,24 +31,24 @@
                 {{ artist.full_name }}
               </h3>
               <a v-if="showPreview && artist.youtube_link" class="results-item-title-youtube" :href="artist.youtube_link" target="_blank">
-                <img src="/icons/youtube.png" alt="YouTube" />
+                <img src="~/assets/icons/youtube.png" alt="YouTube" />
               </a>
             </div>
             <span class="results-item-num" v-show="artist.listing_number">{{ artist.listing_number }}</span>
             <div class="results-item-tags">
             <span class="results-item-accessible-tag" v-if="artist.handicap_accessible">
-                <img src="/icons/accessible-circle.png" alt="Accessible" />
+                <img src="~/assets/icons/accessible-circle.png" alt="Accessible" />
             </span>
             <!-- <span class="results-item-friday-tag" v-if="artist.open_friday">
-                <img src="/icons/friday-circle.png" alt="Open Friday" />
+                <img src="~/assets/icons/friday-circle.png" alt="Open Friday" />
                 Open Friday
             </span> -->
             <span class="results-item-friday-tag results-item-appointment-tag" v-if="artist.preview && artist.preview !== 'No'">
-                <img src="/icons/preview-filter.png" alt="By Appointment" />
+                <img src="~/assets/icons/preview-filter.png" alt="By Appointment" />
                 <strong>Friday Preview</strong>
             </span>
             <span class="results-item-friday-tag results-item-appointment-tag" v-if="artist.appointment && artist.appointment !== 'No'">
-                <img src="/icons/appointment-only.png" alt="By Appointment" />
+                <img src="~/assets/icons/appointment-only.png" alt="By Appointment" />
                 <strong>By Appointment:&nbsp;</strong> {{ artist.appointment }}
             </span>
             </div>
@@ -66,7 +66,7 @@
                 <a :href="website" v-if="artist.website" target="_blank">{{ hostname }}</a>
             </div>
             <a v-if="!showPreview && artist.youtube_link" class="results-item-youtube" :href="artist.youtube_link" target="_blank">
-                <img src="/icons/youtube.png" alt="YouTube" />
+                <img src="~/assets/icons/youtube.png" alt="YouTube" />
                 <strong>YouTube</strong>
             </a>
             <footer>
@@ -86,8 +86,8 @@
                     :class="{ active: isFavorited }"
                     @click="favorite"
                 >
-                    <img src="/icons/favorite-outline.png" v-show="!isFavorited" />
-                    <img src="/icons/favorite-filled.png" v-show="isFavorited" />
+                    <img src="~/assets/icons/favorite-outline.png" v-show="!isFavorited" />
+                    <img src="~/assets/icons/favorite-filled.png" v-show="isFavorited" />
                     <span>Favorite</span>
                 </button>
             </div>
@@ -177,8 +177,6 @@ const openMap = () => {
   } else {
     location = `maps.google.com/maps?daddr=${lat + ',' + lng}&amp;ll=`;
   }
-
-  console.log(location);
 
   if( window.navigator.userAgent.indexOf('Win') !== -1) {
     window.open(`https://${location}`);

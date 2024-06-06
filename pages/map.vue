@@ -36,6 +36,7 @@ const mapStore = useMap(
     showArtists(cluster.markers.map(m => m.title));
   },
 );
+const url = useRequestURL();
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
 
@@ -120,7 +121,7 @@ onMounted(async () => {
   mapStore.addMarker({
     title: '0',
     position: mapStore.mapConfig.center,
-    icon: 'icons/marker-mac.png',
+    icon: `icons/marker-mac.png`,
     size: 60,
     clickable: false,
   });

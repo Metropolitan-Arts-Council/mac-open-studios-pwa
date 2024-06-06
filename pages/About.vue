@@ -8,7 +8,7 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
 const url = `${config.public.apiDomain}${config.public.apiPages}`;
-const { data } = useFetch(url);
+const { data } = await useFetch(url);
 
 const page = computed(() => data.value?.about);
 </script>

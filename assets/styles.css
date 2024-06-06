@@ -55,24 +55,24 @@ body {
 
 @font-face {
   font-family: "Bebas";
-  src: url("/fonts/BebasNeue.otf") format("opentype");
+  src: url("~/assets/fonts/BebasNeue.otf") format("opentype");
 }
 
 @font-face {
   font-family: "FrancophilSans";
-  src: url("/fonts/FrancophilSans.ttf") format("truetype");
+  src: url("~/assets/fonts/FrancophilSans.ttf") format("truetype");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "FrancophilSans";
-  src: url("/fonts/FrancophilSansBold.ttf") format("opentype");
+  src: url("~/assets/fonts/FrancophilSansBold.ttf") format("opentype");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "SaintAndrewsQueen";
-  src: url("/fonts/SaintAndrewsQueen.ttf") format("truetype");
+  src: url("~/assets/fonts/SaintAndrewsQueen.ttf") format("truetype");
 }
 
 h1,
@@ -174,35 +174,35 @@ button {
 }
 
 .fav-icon-bg {
-  background-image: url("/icons/favorite-white.png");
+  background-image: url("~/assets/icons/favorite-white.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 40%;
 }
 
 .friday-icon-bg {
-  background-image: url("/icons/friday-white.png");
+  background-image: url("~/assets/icons/friday-white.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 35%;
 }
 
 .appointment-icon-bg {
-  background-image: url("/icons/appointment-filter.png");
+  background-image: url("~/assets/icons/appointment-filter.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .preview-icon-bg {
-  background-image: url("/icons/preview-filter.png");
+  background-image: url("~/assets/icons/preview-filter.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .access-icon-bg {
-  background-image: url("/icons/accessible-white.png");
+  background-image: url("~/assets/icons/accessible-white.png");
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 35%;
@@ -822,7 +822,7 @@ button {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(images/no-results-blank.jpg);
+  background-image: url(~/assets/images/no-results-blank.jpg);
   padding-top: 50px;
   text-align: center;
   height: calc(100dvh - 150px);
@@ -1034,63 +1034,63 @@ button {
 .calendar-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/calendar-alt-light.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/calendar-alt-light.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .phone-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/mobile-android-light.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/mobile-android-light.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .email-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/at-light.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/at-light.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .address-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/map-marker-alt-light.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/map-marker-alt-light.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .instagram-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/instagram-brands.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/instagram-brands.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .facebook-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/facebook-f-brands.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/facebook-f-brands.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .twitter-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/twitter-brands.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/twitter-brands.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .youtube-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/youtube-fill.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/youtube-fill.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
 .web-with-icon {
   list-style: none !important;
   padding-left: 45px;
-  background: url("icons/about/globe-americas-light.svg") no-repeat 0 0;
+  background: url("~/assets/icons/about/globe-americas-light.svg") no-repeat 0 0;
   background-size: 20px 20px;
 }
 
@@ -1114,7 +1114,7 @@ button {
     line-height: 36px;
     margin: 20px auto auto;
     padding: 45px 4px 4px;
-    background-image: url("/icons/mask.png");
+    background-image: url("~/assets/icons/mask.png");
     background-position: 50% 10px;
     background-repeat: no-repeat;
     background-size: 20%;

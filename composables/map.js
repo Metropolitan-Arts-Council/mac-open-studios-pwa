@@ -1,5 +1,8 @@
-import {Loader} from "@googlemaps/js-api-loader";
-import {MarkerClusterer} from "@googlemaps/markerclusterer";
+import * as GMaps from "@googlemaps/js-api-loader";
+import * as GMapsClusterer from "@googlemaps/markerclusterer";
+
+const { Loader } = GMaps;
+const { MarkerClusterer } = GMapsClusterer;
 
 export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const config = useRuntimeConfig();
@@ -93,7 +96,6 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
   };
   const activateMarker = (markerId) => {
     const markerEl = markers.value.find(m => m.title * 1 === markerId * 1);
-    console.log(markerEl, markerId);
 
     map.setCenter(markerEl.position);
 

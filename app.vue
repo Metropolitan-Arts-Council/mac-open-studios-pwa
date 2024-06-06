@@ -17,15 +17,15 @@
         <NuxtPage/>
       </KeepAlive>
 
-      <ClientOnly>
-        <div v-if="$pwa">
-          <div v-show="$pwa.needRefresh">
-            <span>New content available, click on reload button to update.</span>
+      <!--<ClientOnly>-->
+      <!--  <div v-if="$pwa">-->
+      <!--    <div v-show="$pwa.needRefresh">-->
+      <!--      <span>New content available, click on reload button to update.</span>-->
 
-            <button @click="$pwa.updateServiceWorker()">Reload</button>
-          </div>
-        </div>
-      </ClientOnly>
+      <!--      <button @click="$pwa.updateServiceWorker()">Reload</button>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</ClientOnly>-->
     </div>
 
     <TabBar />
@@ -38,8 +38,6 @@ import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
 
 const { $pwa } = useNuxtApp();
-
-console.log($pwa ? Object.keys($pwa) : null, $pwa);
 
 function spillPwa() {
   console.log('PWA:', {
