@@ -1,6 +1,6 @@
 <template>
   <div class="page-info">
-    <img class="limit-image center-image" src="/images/logo-2023.png" alt="Greenville Open Studios">
+    <img v-if="image" class="limit-image center-image" :src="image" alt="Greenville Open Studios">
 
     <div v-html="page?.page_content"></div>
 
@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-const config = useRuntimeConfig();
-const { data } = await useFetch(`${config.public.apiDomain}${config.public.apiPages}`);
+const { data } = useNuxtData('apiData');
 
 const page = computed(() => data.value?.sponsorship);
+const image = computed(() => data.value?.data?.header_image);
 const sponsor_lists = computed(() => {
   if (!page.value?.sponsor_lists) return [];
 

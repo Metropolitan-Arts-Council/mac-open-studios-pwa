@@ -27,8 +27,11 @@ import '~/assets/styles.css';
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
 
+const config = useRuntimeConfig();
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
+
+useFetch(`${config.public.apiDomain}${config.public.apiPages}`, {key: 'apiData', cache: 'no-cache'});
 
 onMounted(() => {
   artistsStore.getArtists();
