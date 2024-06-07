@@ -6,24 +6,24 @@
     <div class="home-container">
       <ul class="home-list">
         <li>
-          <NuxtLink to="/artists" class="home-item bg-green">
+          <PwaLink to="/artists" class="home-item bg-green">
             <h3 class="home-item-name">Artists</h3>
-          </NuxtLink>
+          </PwaLink>
         </li>
         <li>
-          <NuxtLink to="/map" class="home-item bg-red">
+          <PwaLink to="/map" class="home-item bg-red">
             <h3 class="home-item-name">Map</h3>
-          </NuxtLink>
+          </PwaLink>
         </li>
         <li>
-          <NuxtLink to="/about" class="home-item bg-yellow">
+          <PwaLink to="/about" class="home-item bg-yellow">
             <h3 class="home-item-name">About</h3>
-          </NuxtLink>
+          </PwaLink>
         </li>
         <li>
-          <NuxtLink to="/sponsors" class="home-item bg-orange">
+          <PwaLink to="/sponsors" class="home-item bg-orange">
             <h3 class="home-item-name">Sponsors</h3>
-          </NuxtLink>
+          </PwaLink>
         </li>
       </ul>
     </div>
