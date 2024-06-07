@@ -9,7 +9,7 @@ cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
-    ({request}) => request.url.includes('wp-json'),
+    ({request}) => request.url.includes('wp-json') || request.url.includes('_payload.json'),
     new NetworkFirst({
         plugins: [
             new CacheableResponsePlugin({statuses: [0, 200]}),
