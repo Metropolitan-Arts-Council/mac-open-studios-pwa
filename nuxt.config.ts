@@ -54,8 +54,19 @@ export default defineNuxtConfig({
       ],
     },
     injectManifest: {
+      maximumFileSizeToCacheInBytes: 100_000_000,
       globPatterns: [
-        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf}',
+        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf,ico}',
+        '**/wp-json/**',
+        '**/_payload.json',
+      ],
+    },
+    workbox: {
+      maximumFileSizeToCacheInBytes: 100_000_000,
+      globPatterns: [
+        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf,ico}',
+        '**/wp-json/**',
+        '**/_payload.json',
       ],
     },
     devOptions: {
