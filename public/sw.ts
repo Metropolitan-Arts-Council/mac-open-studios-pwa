@@ -20,7 +20,13 @@ registerRoute(
     })
 );
 
-pageCache({warmCache: ['/', '/about', '/sponsors', '/map', '/artists']});
+pageCache({warmCache: [
+    '/',
+    '/about', 'about',
+    '/sponsors', 'sponsors',
+    '/map', 'map',
+    '/artists', 'artists',
+]});
 imageCache({maxEntries: 500});
 staticResourceCache();
 
