@@ -4,9 +4,12 @@ import {registerRoute} from "workbox-routing";
 import {NetworkFirst} from "workbox-strategies";
 import {CacheableResponsePlugin} from "workbox-cacheable-response";
 
+const manifest = self.__WB_MANIFEST;
 cleanupOutdatedCaches();
+precacheAndRoute(manifest);
 
-precacheAndRoute(self.__WB_MANIFEST);
+self.addEventListener('install', () => console.log('SW MANIFEST', manifest));
+self.addEventListener('activate', () => console.log('SW MANIFEST', manifest));
 
 registerRoute(
     ({request}) => request.url.includes('wp-json') || request.url.includes('_payload.json'),
