@@ -14,10 +14,12 @@
 </template>
 
 <script setup lang="ts">
-const { data } = useNuxtData('apiData');
+import {useAppStore} from "~/stores/app";
 
-const page = computed(() => data.value?.sponsorship);
-const image = computed(() => data.value?.data?.header_image);
+const appStore = useAppStore();
+
+const page = computed(() => appStore.sponsorship);
+const image = computed(() => appStore.data?.header_image);
 const sponsor_lists = computed(() => {
   if (!page.value?.sponsor_lists) return [];
 

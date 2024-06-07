@@ -26,14 +26,14 @@
 import '~/assets/styles.css';
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
+import {useAppStore} from "~/stores/app.js";
 
-const config = useRuntimeConfig();
+const appStore = useAppStore();
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
 
-useFetch(`${config.public.apiDomain}${config.public.apiPages}`, {key: 'apiData', cache: 'no-cache'});
-
 onMounted(() => {
+  appStore.getData();
   artistsStore.getArtists();
   favoritesStore.getFavorites();
 });

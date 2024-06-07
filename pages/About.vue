@@ -5,12 +5,12 @@
   </div>
 </template>
 <script setup lang="ts">
-const { data } = useNuxtData('apiData');
+import {useAppStore} from "~/stores/app";
 
-console.log('about', data);
+const appStore = useAppStore();
 
-const page = computed(() => data.value?.about);
-const image = computed(() => data.value?.data?.header_image);
+const page = computed(() => appStore.about);
+const image = computed(() => appStore.data?.header_image);
 </script>
 
 <style>
