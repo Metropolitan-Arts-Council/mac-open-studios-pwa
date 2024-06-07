@@ -4,12 +4,17 @@ import {registerRoute} from "workbox-routing";
 import {NetworkFirst} from "workbox-strategies";
 import {CacheableResponsePlugin} from "workbox-cacheable-response";
 
+const version = self.__WB_REVISION || '0';
 const manifest = self.__WB_MANIFEST;
+const manifreshed = manifest.map(entry => ({
+    ...entry,
+    revision: null,
+}));
 cleanupOutdatedCaches();
-precacheAndRoute(manifest);
+precacheAndRoute(manifreshed);
 
-self.addEventListener('install', () => console.log('SW MANIFEST', manifest));
-self.addEventListener('activate', () => console.log('SW MANIFEST', manifest));
+self.addEventListener('install', () => console.log('SW MANIFEST', manifest, manifreshed, version));
+self.addEventListener('activate', () => console.log('SW MANIFEST', manifest, manifreshed, version));
 
 registerRoute(
     ({request}) => request.url.includes('wp-json') || request.url.includes('_payload.json'),
@@ -32,5 +37,5 @@ staticResourceCache();
 
 offlineFallback({
     pageFallback: '/',
-    imageFallback: '/placeholder.png',
+    imageFallback: 'placeholder.png',
 });
