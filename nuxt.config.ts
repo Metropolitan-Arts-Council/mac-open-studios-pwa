@@ -11,6 +11,9 @@ export default defineNuxtConfig({
       apiArtists: '',
       apiPages: '',
       googleMapsKey: '',
+      vapidKey: '',
+      apiNotificationsPush: '',
+      apiNotificationsEmail: '',
     }
   },
   app: {
@@ -59,7 +62,7 @@ export default defineNuxtConfig({
       ],
     },
     devOptions: {
-      enabled: false,
+      enabled: true,
       type: 'module',
     }
   }

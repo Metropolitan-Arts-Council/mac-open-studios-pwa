@@ -147,6 +147,9 @@ button {
 .bg-yellow {
   background-color: var(--yellow);
 }
+.bg-blue {
+  background-color: var(--blue);
+}
 
 /* END RESETS + HELPERS */
 
@@ -1289,4 +1292,84 @@ button {
 
 .aligncenter {
   text-align: center;
+}
+
+.notification-section {
+  margin-bottom: 32px;
+}
+
+.notification-section button {
+  background-color: var(--red);
+  border: none;
+  padding: 12px 36px;
+  color: white;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.notification-section button:disabled {
+  opacity: 0.5;
+}
+
+.notification-section label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.notification-section label span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--meta);
+}
+
+.notification-section label input {
+  display: block;
+  color: var(--meta);
+  padding: 4px 8px;
+  font-size: 1.2rem;
+}
+
+.notification-section label input:disabled {
+  opacity: 0.5;
+}
+
+.email-success {
+  position: fixed;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  padding: 12px 0;
+  background-color: var(--green);
+  border: var(--gray) solid 1px;
+  z-index: 100;
+  text-align: center;
+  color: var(--gray);
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+.email-success span {
+  padding: 0 8px;
+}
+
+.email-success span.center {
+  text-align: center;
+  padding: 8px;
+}
+
+.email-success span.right {
+  text-align: right;
+}
+
+.email-success button {
+  border: none;
+  border-radius: 4px;
+  color: var(--gray);
+  fill: var(--gray);
+  padding: 8px;
+  background-color: transparent;
+  cursor: pointer;
 }

@@ -27,14 +27,27 @@ import '~/assets/styles.css';
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
 import {useAppStore} from "~/stores/app.js";
+import {usePushNotificationStore} from "~/stores/PushNotifications.js";
 
+const {$pwa} = useNuxtApp();
 const appStore = useAppStore();
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
+let notificationStore;
+
+if (process.client) {
+  notificationStore = usePushNotificationStore();
+}
 
 onMounted(() => {
   appStore.getData();
   artistsStore.getArtists();
   favoritesStore.getFavorites();
 });
+
+watch(() => $pwa?.swActivated, (isActivated) => {
+  if (!isActivated) return;
+
+  notificationStore?.subscribe();
+}, {immediate: true});
 </script>

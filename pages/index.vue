@@ -25,6 +25,11 @@
             <h3 class="home-item-name">Sponsors</h3>
           </PwaLink>
         </li>
+        <li>
+          <PwaLink to="/notifications" class="home-item bg-blue">
+            <h3 class="home-item-name">Notifications</h3>
+          </PwaLink>
+        </li>
       </ul>
     </div>
     <footer class="home-footer">

@@ -83,3 +83,18 @@ offlineFallback({
     pageFallback: 'index.html',
     imageFallback: 'placeholder.png',
 });
+
+self.addEventListener('push', (event) => {
+    console.log('SW PUSH', event, event?.data?.json());
+
+    if (!(!!self.Notification && self.Notification.permission === 'granted')) return;
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
+    if (event.data) {
+        const data = event.data.json();
+
+        event.waitUntil(
+            self.registration.showNotification(data.title, data)
+        );
+    }
+});
