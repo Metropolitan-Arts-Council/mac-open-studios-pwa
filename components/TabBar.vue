@@ -25,6 +25,12 @@
                     <img src="~/assets/icons/info-orange.png" alt="Info" class="icon-active" />
                 </PwaLink>
             </li>
+          <li>
+            <PwaLink to="/Notifications" class="link">
+              <img src="~/assets/icons/bell-white.png" alt="Info" class="icon-default" />
+              <img src="~/assets/icons/bell-orange.png" alt="Info" class="icon-active" />
+            </PwaLink>
+          </li>
         </ul>
     </nav>
 </template>
