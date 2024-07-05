@@ -74,7 +74,7 @@ const showArtists = (id) => {
     })
   }
 }
-const recenter = (position, retry) => {
+const recenter = (artist_id, retry) => {
   retry = retry || 0
   const max = 10
 
@@ -84,12 +84,12 @@ const recenter = (position, retry) => {
   // can trigger the event before the map has rendered.
   // Doing a little retry loop here gives the map
   // a chance to catch up.
-  if (!mapStore.map) {
+  if (!mapStore.getMap()) {
     setTimeout(() => {
-      recenter(position, ++retry);
-    }, 10)
+      recenter(artist_id, ++retry);
+    }, 50)
   } else {
-    mapStore.activateMarker(position || 0)
+    mapStore.activateMarker(artist_id || 0)
   }
 }
 const toggleFavorites = () => {

@@ -119,12 +119,15 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
     const marker = markers.value.find(m => `${m.title}` === `${markerId}`);
     cluster.removeMarker(marker);
   }
+  const getMap = () => {
+    return map;
+  }
 
   return {
     markers,
     mapConfig,
     load, initialize,
-    google, map,
+    google, getMap,
     addMarker, wrapInCluster,
     activateMarker, showMarker, hideMarker
   };
