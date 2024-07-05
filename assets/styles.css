@@ -176,6 +176,13 @@ button {
   outline: none;
 }
 
+.clear-filters-icon-bg {
+  background-image: url("~/assets/icons/search-white.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 40%;
+}
+
 .fav-icon-bg {
   background-image: url("~/assets/icons/favorite-white.png");
   background-position: 50% 50%;
@@ -900,6 +907,13 @@ button {
 .gm-fullscreen-control,
 .gmnoprint {
   display: none; /* Hide unwanted Google Map controls */
+}
+
+.map-clear-filters {
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  background-color: var(--blue);
 }
 
 .map-favorites-toggle {

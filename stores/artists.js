@@ -110,11 +110,21 @@ export const useArtistsStore = defineStore('artistsStore', () => {
 
     return null;
   };
+  const clearFilters = () => {
+    filters.query = '';
+    filters.mediums = [];
+    filters.dates = [];
+    filters.accessible = false;
+    filters.open_friday = false;
+    filters.appointment_only = false;
+    filters.favorited = false;
+    filters.preview_day = false;
+  };
 
   return {
     hasLoaded, artists,
     meta, mediums, locations, getArtists,
     filters, isFiltering, filteredArtists,
-    getFilter, setFilter, toggleFilter,
+    getFilter, setFilter, toggleFilter, clearFilters,
   };
 });

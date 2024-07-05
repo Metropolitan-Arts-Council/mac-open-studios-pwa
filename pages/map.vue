@@ -10,6 +10,14 @@
     </div>
 
     <button
+      v-if="online && artistsStore.isFiltering"
+      class="map-clear-filters clear-filters-icon-bg button-circle"
+      :class="{ hidden: !artistsStore.isFiltering }"
+      @click="clearFilters"
+    >
+      Clear Filters
+    </button>
+    <button
       v-if="online"
       class="map-favorites-toggle fav-icon-bg button-circle"
       :class="{ active: data.filterFavorited }"
@@ -28,7 +36,6 @@
 <script setup>
 import {useArtistsStore} from "~/stores/artists.js";
 import {useFavoritesStore} from "~/stores/favorites.js";
-import {onMounted} from "vue";
 import {useOnline} from "@vueuse/core";
 
 const online = useOnline();
@@ -43,7 +50,6 @@ const mapStore = useMap(
     showArtists(cluster.markers.map(m => m.title));
   },
 );
-const url = useRequestURL();
 const artistsStore = useArtistsStore();
 const favoritesStore = useFavoritesStore();
 
@@ -52,10 +58,6 @@ const loader = ref();
 const data = reactive({
   showPanel: false,
   filterFavorited: false,
-});
-
-const locations = computed(() => {
-  return artistsStore.locations || []
 });
 
 const togglePanel = () => {
@@ -127,6 +129,11 @@ const mountMap = async () => {
   const mapContainer = loader.value.querySelector('#map');
   mapStore.initialize(mapContainer);
 
+  resetMap();
+  togglePanel(route);
+};
+
+const resetMap = () => {
   mapStore.addMarker({
     title: '0',
     position: mapStore.mapConfig.center,
@@ -145,9 +152,13 @@ const mountMap = async () => {
     });
   });
   mapStore.wrapInCluster();
-
-  togglePanel(route);
 };
+
+const clearFilters = () => {
+  artistsStore.clearFilters();
+  mapStore.clearMap();
+  resetMap();
+}
 
 watch([online, loader], mountMap, {immediate: true});
 </script>
