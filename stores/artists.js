@@ -1,3 +1,5 @@
+import {useFavoritesStore} from "~/stores/favorites.js";
+
 function groupBy( array , fnc ) {
   let groups = {};
   array.forEach(item => {
@@ -11,10 +13,22 @@ function groupBy( array , fnc ) {
 }
 
 export const useArtistsStore = defineStore('artistsStore', () => {
+  const favoritesStore = useFavoritesStore();
+
   const config = useRuntimeConfig();
   const hasLoaded = ref(false);
   const artists = ref([]);
   const meta = ref([]);
+  const filters = reactive({
+    query: '',
+    mediums: [],
+    dates: [],
+    accessible: false,
+    open_friday: false,
+    appointment_only: false,
+    favorited: false,
+    preview_day: false,
+  });
 
   const mediums = computed(() => meta.value.mediums);
   const locations = computed(() => {
@@ -30,7 +44,55 @@ export const useArtistsStore = defineStore('artistsStore', () => {
       return artist.address.street;
     });
   });
+  const isFiltering = computed(() => {
+    if (filters.query.trim() !== '') return true;
+    if (filters.mediums.length > 0) return true;
+    if (filters.dates.length > 0) return true;
 
+    return filters.accessible || filters.open_friday || filters.appointment_only || filters.favorited || filters.preview_day;
+  });
+  const filteredArtists = computed(() => {
+    return artists.value.filter((artist) => {
+      if (!matchesAnyOfDates(artist)) return false;
+      if (!matchesAnyOfMediums(artist)) return false;
+      if (!matchesQuery(artist)) return false;
+      if (filters.accessible && !artist.handicap_accessible) return false;
+      if (filters.open_friday && !artist.open_friday) return false;
+      if (filters.appointment_only && artist.appointment && artist.appointment.toLowerCase() === 'no') return false;
+      if (filters.preview_day && artist.preview && artist.preview.toLowerCase() === 'no') return false;
+      if (filters.favorited) {
+        const favorites = [...favoritesStore.favorites];
+
+        if (!favorites.includes(artist.id)) return false;
+      }
+
+      return true;
+    });
+  });
+
+  const matchesAnyOfDates = (artist) => {
+    if (!filters.dates.length) return true;
+    if (!artist.days) return false;
+
+    return artist.days.some(date => filters.dates.includes(moment(date.day, 'DD/MM/YYYY').date()));
+  }
+  const matchesAnyOfMediums = (artist) => {
+    if (!filters.mediums.length) return true;
+    if (!artist.mediums) return false;
+
+    return artist.mediums.some(medium => filters.mediums.includes(medium));
+  };
+  const matchesQuery = (artist) => {
+    const query = filters.query.toLowerCase().trim();
+
+    if (query === '') return true;
+
+    for (let term of query.split(/\s+/g)) {
+      if (!artist.full_name.toLowerCase().includes(term)) return false;
+    }
+
+    return true;
+  };
   const getArtists = () => {
     const url = `${config.public.apiDomain}${config.public.apiArtists}`;
 
@@ -40,9 +102,19 @@ export const useArtistsStore = defineStore('artistsStore', () => {
       hasLoaded.value = true;
     }).catch(error => console.log(error));
   };
+  const setFilter = (key, value) => filters[key] = value;
+  const getFilter = (key) => filters[key];
+  const toggleFilter = (key) => {
+    if (filters[key] === true) return filters[key] = false;
+    if (filters[key] === false) return filters[key] = true;
+
+    return null;
+  };
 
   return {
     hasLoaded, artists,
-    meta, mediums, locations, getArtists
+    meta, mediums, locations, getArtists,
+    filters, isFiltering, filteredArtists,
+    getFilter, setFilter, toggleFilter,
   };
 });

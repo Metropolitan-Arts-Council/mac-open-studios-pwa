@@ -135,7 +135,7 @@ const mountMap = async () => {
     clickable: false,
   });
 
-  artistsStore.artists.forEach(artist => {
+  artistsStore.filteredArtists.forEach(artist => {
     mapStore.addMarker({
       position: {
         lat: artist.address.lat,

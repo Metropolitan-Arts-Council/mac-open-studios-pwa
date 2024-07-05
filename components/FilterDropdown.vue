@@ -15,7 +15,7 @@
                     Filter by Medium
                 </button>
 
-                <button v-if="isFiltering" class="filters-close filters-clear button-blank" alt="Expand" @click="clear">
+                <button v-if="artistStore.isFiltering" class="filters-close filters-clear button-blank" alt="Expand" @click="clear">
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="_30" data-name="30">
                         <path d="m16 30a14 14 0 1 1 14-14 14 14 0 0 1 -14 14zm0-26a12 12 0 1 0 12 12 12 12 0 0 0 -12-12z"/><path d="m21 22a1 1 0 0 1 -.71-.29l-5-5a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z"/><path d="m11 22a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.42l5-5a1 1 0 0 1 1.42 1.42l-5 5a1 1 0 0 1 -.71.29z"/><path d="m16 17a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.42l5-5a1 1 0 0 1 1.42 1.42l-5 5a1 1 0 0 1 -.71.29z"/><path d="m16 17a1 1 0 0 1 -.71-.29l-5-5a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z"/>
                     </g></svg>
@@ -24,13 +24,13 @@
             </div>
 
             <h5 class="flex-col text-right filters-count">
-                <em v-if="isFiltering">
-                    <template v-if="data.checkedDates.length">
-                        {{data.checkedDates.length}} <span>{{resultsDateWording}}</span>
+                <em v-if="artistStore.isFiltering">
+                    <template v-if="artistStore.filters.dates.length">
+                        {{artistStore.filters.dates.length}} <span>{{resultsDateWording}}</span>
                     </template>
-                    <span v-if="data.checkedDates.length && data.checkedMediums.length">and</span>
-                    <template v-if="data.checkedMediums.length">
-                        {{data.checkedMediums.length}} <span>{{resultsMediumWording}}</span>
+                    <span v-if="artistStore.filters.dates.length && artistStore.filters.mediums.length">and</span>
+                    <template v-if="artistStore.filters.mediums.length">
+                        {{artistStore.filters.mediums.length}} <span>{{resultsMediumWording}}</span>
                     </template>
                     <span> with</span>
                 </em>
@@ -42,8 +42,8 @@
             <ul class="buttons-list">
                 <li v-for="medium in mediums">
                     <button
-                        :class="{ active: data.checkedMediums.includes(medium) }"
-                        @click.stop="toggleMedium(medium)"
+                        :class="{ active: artistStore.filters.mediums.includes(medium) }"
+                        @click.stop="toggleItem('mediums', medium)"
                         v-html="medium"
                     ></button>
                 </li>
@@ -81,8 +81,8 @@
                     <div v-if="day.disabled">
                         <div class="value disabled">{{ day.value }}</div>
                     </div>
-                    <a v-else href="#" @click.prevent="toggleDate(day.value)">
-                        <div class="value" :class="{active: data.checkedDates.includes(day.value)}">{{ day.value }}</div>
+                    <a v-else href="#" @click.prevent="toggleItem('dates',day.value)">
+                        <div class="value" :class="{active: artistStore.filters.dates.includes(day.value)}">{{ day.value }}</div>
                     </a>
                 </div>
             </div>
@@ -92,8 +92,9 @@
 
 <script setup>
 import moment from 'moment';
+import {useArtistsStore} from "~/stores/artists.js";
 
-const emit = defineEmits(['filterByDate', 'filterByMedium']);
+const artistStore = useArtistsStore();
 const props = defineProps([
   'mediums', 'resultsCount', 'useDateFilter'
 ]);
@@ -101,8 +102,8 @@ const props = defineProps([
 const data = reactive({
   showDateFilter: false,
   showMediumFilter: false,
-  checkedDates: [],
-  checkedMediums: [],
+  dates: [],
+  mediums: [],
 });
 
 const dates = computed(() => {
@@ -116,17 +117,14 @@ const dates = computed(() => {
     return {value, disabled: value < firstAvailable};
   });
 });
-const isFiltering = computed(() => {
-  return data.checkedDates.length || data.checkedMediums.length;
-});
 const resultsWording = computed(() => {
   return props.resultsCount === 1 ? 'Artist' : 'Artists';
 });
 const resultsDateWording = computed(() => {
-  return data.checkedDates.length === 1 ? 'Date' : 'Dates';
+  return artistStore.filters.dates.length === 1 ? 'Date' : 'Dates';
 });
 const resultsMediumWording = computed(() => {
-  return data.checkedMediums.length === 1 ? 'Medium' : 'Mediums';
+  return artistStore.filters.mediums.length === 1 ? 'Medium' : 'Mediums';
 });
 
 const toggleDateFilter = () => {
@@ -137,26 +135,17 @@ const toggleMediumFilter = () => {
   data.showDateFilter = false;
   data.showMediumFilter = !data.showMediumFilter;
 };
-const toggleDate = (date) => {
-  toggleItem('checkedDates', date);
-};
-const toggleMedium = (medium) => {
-  toggleItem('checkedMediums', medium);
-};
 const toggleItem = (key, item) => {
-  if (data[key].includes(item)) {
-    data[key].splice(data[key].indexOf(item), 1)
+  if (artistStore.filters[key].includes(item)) {
+    artistStore.filters[key].splice(artistStore.filters[key].indexOf(item), 1)
   } else {
-    data[key].push(item);
+    artistStore.filters[key].push(item);
   }
 };
 const clear = () => {
-  data.checkedDates = [];
-  data.checkedMediums = [];
+  artistStore.filters.dates = [];
+  artistStore.filters.mediums = [];
   data.showDateFilter = false;
   data.showMediumFilter = false;
 };
-
-watch(() => JSON.stringify(data.checkedDates), () => emit('filterByDate', data.checkedDates));
-watch(() => JSON.stringify(data.checkedMediums), () => emit('filterByMedium', data.checkedMediums));
 </script>
