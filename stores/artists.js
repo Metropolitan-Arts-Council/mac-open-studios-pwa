@@ -23,6 +23,7 @@ export const useArtistsStore = defineStore('artistsStore', () => {
     query: '',
     mediums: [],
     dates: [],
+    names: [],
     accessible: false,
     open_friday: false,
     appointment_only: false,
@@ -48,6 +49,7 @@ export const useArtistsStore = defineStore('artistsStore', () => {
     if (filters.query.trim() !== '') return true;
     if (filters.mediums.length > 0) return true;
     if (filters.dates.length > 0) return true;
+    if (filters.names.length > 0) return true;
 
     return filters.accessible || filters.open_friday || filters.appointment_only || filters.favorited || filters.preview_day;
   });
@@ -55,6 +57,7 @@ export const useArtistsStore = defineStore('artistsStore', () => {
     return artists.value.filter((artist) => {
       if (!matchesAnyOfDates(artist)) return false;
       if (!matchesAnyOfMediums(artist)) return false;
+      if (!matchesAnyOfNames(artist)) return false;
       if (!matchesQuery(artist)) return false;
       if (filters.accessible && !artist.handicap_accessible) return false;
       if (filters.open_friday && !artist.open_friday) return false;
@@ -81,6 +84,11 @@ export const useArtistsStore = defineStore('artistsStore', () => {
     if (!artist.mediums) return false;
 
     return artist.mediums.some(medium => filters.mediums.includes(medium));
+  };
+  const matchesAnyOfNames = (artist) => {
+    if (!filters.names.length) return true;
+
+    return filters.names.includes(artist.last_name);
   };
   const matchesQuery = (artist) => {
     const query = filters.query.toLowerCase().trim();
@@ -114,6 +122,7 @@ export const useArtistsStore = defineStore('artistsStore', () => {
     filters.query = '';
     filters.mediums = [];
     filters.dates = [];
+    filters.names = [];
     filters.accessible = false;
     filters.open_friday = false;
     filters.appointment_only = false;

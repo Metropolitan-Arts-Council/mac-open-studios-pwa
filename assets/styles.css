@@ -529,7 +529,8 @@ button {
   transition: all 200ms;
 }
 
-.mediums-filter-list {
+.mediums-filter-list,
+.names-filter-list {
   position: relative;
   max-height: 600px;
   height: auto;
@@ -537,12 +538,14 @@ button {
   transition: all 500ms ease-out;
 }
 
-.mediums-filter-list.hide {
+.mediums-filter-list.hide,
+.names-filter-list.hide {
   max-height: 0;
   transition: all 500ms ease-out;
 }
 
-.mediums-filter-list ul {
+.mediums-filter-list ul,
+.names-filter-list ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -550,7 +553,8 @@ button {
   margin: 0;
 }
 
-.mediums-filter-list li {
+.mediums-filter-list li,
+.names-filter-list li {
   padding: 5px;
 }
 
@@ -1179,7 +1183,9 @@ button {
     transition: all 500ms ease-out;
 }
 
-.calendar .filters-close, .mediums-filter-list .filters-close {
+.calendar .filters-close,
+.mediums-filter-list .filters-close,
+.names-filter-list .filters-close {
   position: absolute;
   right: 20px;
   top: 10px;

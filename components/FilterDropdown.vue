@@ -14,6 +14,12 @@
                     </g></svg>
                     Filter by Medium
                 </button>
+                <button class="pill button-blank" :class="{blue: data.showNameFilter}" @click="toggleNameFilter">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2 22C2 17.5817 5.58172 14 10 14C14.4183 14 18 17.5817 18 22H16C16 18.6863 13.3137 16 10 16C6.68629 16 4 18.6863 4 22H2ZM10 13C6.685 13 4 10.315 4 7C4 3.685 6.685 1 10 1C13.315 1 16 3.685 16 7C16 10.315 13.315 13 10 13ZM10 11C12.21 11 14 9.21 14 7C14 4.79 12.21 3 10 3C7.79 3 6 4.79 6 7C6 9.21 7.79 11 10 11ZM18.2837 14.7028C21.0644 15.9561 23 18.752 23 22H21C21 19.564 19.5483 17.4671 17.4628 16.5271L18.2837 14.7028ZM17.5962 3.41321C19.5944 4.23703 21 6.20361 21 8.5C21 11.3702 18.8042 13.7252 16 13.9776V11.9646C17.6967 11.7222 19 10.264 19 8.5C19 7.11935 18.2016 5.92603 17.041 5.35635L17.5962 3.41321Z"></path>
+                  </svg>
+                    Filter by Name
+                </button>
 
                 <button v-if="artistStore.isFiltering" class="filters-close filters-clear button-blank" alt="Expand" @click="clear">
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="_30" data-name="30">
@@ -87,6 +93,18 @@
                 </div>
             </div>
         </div>
+        <div class="names-filter-list" :class="{ hide: !data.showNameFilter }">
+          <FiltersClose @click="data.showNameFilter = false" />
+          <ul class="buttons-list">
+            <li v-for="name in names">
+              <button
+                :class="{ active: artistStore.filters.names.includes(name) }"
+                @click.stop="toggleItem('names', name)"
+                v-html="name"
+              ></button>
+            </li>
+          </ul>
+        </div>
     </nav>
 </template>
 
@@ -102,8 +120,7 @@ const props = defineProps([
 const data = reactive({
   showDateFilter: false,
   showMediumFilter: false,
-  dates: [],
-  mediums: [],
+  showNameFilter: false,
 });
 
 const dates = computed(() => {
@@ -126,14 +143,29 @@ const resultsDateWording = computed(() => {
 const resultsMediumWording = computed(() => {
   return artistStore.filters.mediums.length === 1 ? 'Medium' : 'Mediums';
 });
+const resultsNameWording = computed(() => {
+  return artistStore.filters.mediums.length === 1 ? 'Name' : 'Names';
+});
+const names = computed(() => {
+  const last_names = artistStore.artists.map(a => a.last_name);
+
+  return [...new Set(last_names)].sort();
+});
 
 const toggleDateFilter = () => {
   data.showMediumFilter = false;
+  data.showNameFilter = false;
   data.showDateFilter = !data.showDateFilter;
 };
 const toggleMediumFilter = () => {
   data.showDateFilter = false;
+  data.showNameFilter = false;
   data.showMediumFilter = !data.showMediumFilter;
+};
+const toggleNameFilter = () => {
+  data.showDateFilter = false;
+  data.showMediumFilter = false;
+  data.showNameFilter = !data.showNameFilter;
 };
 const toggleItem = (key, item) => {
   if (artistStore.filters[key].includes(item)) {
@@ -145,6 +177,7 @@ const toggleItem = (key, item) => {
 const clear = () => {
   artistStore.filters.dates = [];
   artistStore.filters.mediums = [];
+  artistStore.filters.names = [];
   data.showDateFilter = false;
   data.showMediumFilter = false;
 };
