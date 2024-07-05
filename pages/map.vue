@@ -137,7 +137,7 @@ const resetMap = () => {
   mapStore.addMarker({
     title: '0',
     position: mapStore.mapConfig.center,
-    // icon: `icons/marker-mac.png`,
+    icon: `icons/marker-mac.png`,
     size: 60,
     clickable: false,
   });

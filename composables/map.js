@@ -6,7 +6,7 @@ const { MarkerClusterer } = GMapsClusterer;
 
 export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const config = useRuntimeConfig();
-  // const url = useRequestURL();
+  const url = useRequestURL();
   const mapConfig = reactive({
     mapId: 'main',
     center: { lat: 34.844021, lng: -82.404925, },
@@ -74,6 +74,14 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
       ...defaultMarker,
       ...mrkr,
     };
+    let iconImg = null;
+
+    if (marker.icon) {
+      iconImg = document.createElement("img");
+
+      iconImg.width = marker.size;
+      iconImg.src = `${url.origin}/${marker.icon}`;
+    }
 
     // const iconImg = document.createElement("img");
     // iconImg.width = marker.size;
@@ -81,7 +89,7 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
 
     const markerEl = new AdvancedMarkerElement.value({
       position: toRaw(marker.position),
-      // content: iconImg,
+      content: iconImg,
       map: map,
       title: marker.title,
     });
