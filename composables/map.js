@@ -6,7 +6,7 @@ const { MarkerClusterer } = GMapsClusterer;
 
 export function useMap(onMarkerClick = () => {}, onClusterClick) {
   const config = useRuntimeConfig();
-  const url = useRequestURL();
+  // const url = useRequestURL();
   const mapConfig = reactive({
     mapId: 'main',
     center: { lat: 34.844021, lng: -82.404925, },
@@ -19,8 +19,8 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
       }
     ]
   });
-  const defaultIconSrc = `${url.origin}/icons/marker-location.png`;
-  const activeIconSrc = `${url.origin}/icons/marker-location-active.png`
+  // const defaultIconSrc = `${url.origin}/icons/marker-location.png`;
+  // const activeIconSrc = `${url.origin}/icons/marker-location-active.png`
   const google = ref();
   const markers = ref([]);
   let map = null;
@@ -75,13 +75,13 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
       ...mrkr,
     };
 
-    const iconImg = document.createElement("img");
-    iconImg.width = marker.size;
-    iconImg.src = marker.icon ? `${url.origin}/${marker.icon}` : defaultIconSrc;
+    // const iconImg = document.createElement("img");
+    // iconImg.width = marker.size;
+    // iconImg.src = marker.icon ? `${url.origin}/${marker.icon}` : defaultIconSrc;
 
     const markerEl = new AdvancedMarkerElement.value({
       position: toRaw(marker.position),
-      content: iconImg,
+      // content: iconImg,
       map: map,
       title: marker.title,
     });
@@ -99,13 +99,13 @@ export function useMap(onMarkerClick = () => {}, onClusterClick) {
 
     map.setCenter(markerEl.position);
 
-    markers.value.forEach(m => {
-      m.content.src = defaultIconSrc;
-    });
-
     if (markerId * 1 === 0) return;
 
-    markerEl.content.src = activeIconSrc;
+    // markers.value.forEach(m => {
+    //   m.content.src = defaultIconSrc;
+    // });
+    //
+    // markerEl.content.src = activeIconSrc;
   };
   const wrapInCluster = () => {
     cluster.addMarkers(markers.value);
