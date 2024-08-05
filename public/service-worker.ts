@@ -39,7 +39,15 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    event.waitUntil(self.clients.claim());
+    event.waitUntil(self.clients.claim().then(() => {
+        return self.clients.matchAll({ type: 'window' }).then((clients) => {
+            clients.forEach((client) => {
+                if (client.url && 'navigate' in client) {
+                    client.navigate(client.url);
+                }
+            });
+        });
+    }));
 });
 
 self.addEventListener('message', (event) => {
