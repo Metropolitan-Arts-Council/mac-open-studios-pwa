@@ -10,16 +10,16 @@ export const usePushNotificationStore = defineStore('pushNotificationStore', () 
     if (granted.value) return 'Granted';
     if (denied.value) return 'Denied';
 
-    return Notification.permission;
+    return window.Notification.permission;
   });
 
   const update = () => {
-    granted.value = Notification.permission === 'granted';
-    denied.value = Notification.permission === 'denied';
-    requested.value = Notification.permission !== 'default';
+    granted.value = window.Notification?.permission === 'granted';
+    denied.value = window.Notification?.permission === 'denied';
+    requested.value = window.Notification?.permission !== 'default';
   };
   const request = async () => {
-    await Notification.requestPermission();
+    await window.Notification.requestPermission();
     update();
     await subscribe();
   };

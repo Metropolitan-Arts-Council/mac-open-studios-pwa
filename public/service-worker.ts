@@ -35,13 +35,11 @@ offlineFallback({
 });
 
 self.addEventListener('install', (event) => {
-    self.skipWaiting();
+    event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('push', (event) => {
-    console.log('SW PUSH', event, event?.data?.json());
-
-    if (!(!!self.Notification && self.Notification.permission === 'granted')) return;
+    if (!('Notification' in self) || self.Notification.permission !== 'granted') return;
 
     // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
     if (event.data) {
