@@ -27,7 +27,7 @@ export default defineNuxtConfig({
       installPrompt: true,
       periodicSyncForUpdates: 20,
     },
-    filename: 'sw.ts',
+    filename: 'service-worker.ts',
     strategies: 'injectManifest',
     registerType: 'prompt',
     manifest: {

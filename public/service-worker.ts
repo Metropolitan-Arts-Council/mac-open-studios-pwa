@@ -34,6 +34,10 @@ offlineFallback({
     imageFallback: 'placeholder.png',
 });
 
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
+});
+
 self.addEventListener('push', (event) => {
     console.log('SW PUSH', event, event?.data?.json());
 
