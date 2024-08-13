@@ -88,7 +88,7 @@ export const useArtistsStore = defineStore('artistsStore', () => {
   const matchesAnyOfNames = (artist) => {
     if (!filters.names.length) return true;
 
-    return filters.names.includes(artist.last_name);
+    return filters.names.includes(artist.last_name[0]);
   };
   const matchesQuery = (artist) => {
     const query = filters.query.toLowerCase().trim();

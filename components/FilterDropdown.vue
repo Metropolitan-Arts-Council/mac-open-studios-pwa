@@ -147,7 +147,7 @@ const resultsNameWording = computed(() => {
   return artistStore.filters.mediums.length === 1 ? 'Name' : 'Names';
 });
 const names = computed(() => {
-  const last_names = artistStore.artists.map(a => a.last_name);
+  const last_names = artistStore.artists.map(a => a.last_name[0]);
 
   return [...new Set(last_names)].sort();
 });
