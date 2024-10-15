@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  ssr: false,
+  ssr: true,
   modules: ['@pinia/nuxt', "@vite-pwa/nuxt"],
   alias: {
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
@@ -59,11 +59,11 @@ export default defineNuxtConfig({
     },
     injectManifest: {
       globPatterns: [
-        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf,ico}',
+        '**/*.{js,css,html,png,jpg,jpeg,json,svg,ttf,otf}',
       ],
     },
     devOptions: {
-      enabled: true,
+      enabled: false,
       type: 'module',
     }
   }
