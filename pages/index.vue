@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header class="home-header">
-      <img src="/images/logo-2023.png" alt="Greenville Open Studios" />
+      <img v-if="app?.data?.header_image" :src="app.data.header_image" alt="Greenville Open Studios" />
     </header>
     <div class="home-container">
       <ul class="home-list">
@@ -34,5 +34,7 @@
 </template>
 
 <script setup>
+import {useAppStore} from "~/stores/app.js";
 
+const app = useAppStore();
 </script>
