@@ -793,6 +793,14 @@ button {
   white-space: nowrap;
 }
 
+.results-item-not-participating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.2rem;
+  color: var(--red);
+}
+
 @media (max-width: 450px) {
   .results-item-appointment-tag {
     font-size: 11px;
