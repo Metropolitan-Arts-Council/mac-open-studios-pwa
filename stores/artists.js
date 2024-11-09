@@ -77,6 +77,17 @@ export const useArtistsStore = defineStore('artistsStore', () => {
   const matchesAnyOfDates = (artist) => {
     if (!filters.dates.length) return true;
 
+    // Check if the only date in filters.dates is the 8th and it falls on a Friday
+    const onlyIncludesFriday8th = filters.dates.length === 1 && filters.dates.some(date => {
+      const momentDate = moment(date, 'DD/MM/YYYY');
+      return momentDate.date() === 8 && momentDate.day() === 5; // 5 represents Friday
+    });
+
+    // If filters only include the 8th, and it's a Friday, return true only if the artist is open on Friday
+    if (!onlyIncludesFriday8th) {
+      return true;
+    }
+
     // Check if any of the dates in filters.dates is a Friday
     const includesFriday8th = filters.dates.some(date => {
       const momentDate = moment(date, 'DD/MM/YYYY');
