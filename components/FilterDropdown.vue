@@ -125,15 +125,26 @@ const data = reactive({
 
 const dates = computed(() => {
   const date = moment();
-  const beforeNovember = date.month() < 10;
-  const firstAvailable = Math.max(7, beforeNovember ? 0 : date.date());
+  const currentMonth = date.month();
+  const beforeNovember = currentMonth < 10;
+  const firstAvailable = Math.max(6, beforeNovember ? 0 : date.date());
 
-  return [...Array(30).keys()].map(i => {
-    const value = i + 1;
+  // Determine the offset for the start day of the month
+  const startOfMonth = date.startOf("month");
+  const startDayOffset = startOfMonth.day(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 
-    return {value, disabled: value < firstAvailable};
-  });
+  return [
+    // Fill in empty slots based on the offset
+    ...Array(startDayOffset).fill({ value: null, disabled: true }),
+
+    // Fill in actual dates for the month, marking them as disabled if before `firstAvailable`
+    ...Array(30).fill().map((_, i) => {
+      const value = i + 1;
+      return { value, disabled: value < firstAvailable };
+    })
+  ];
 });
+
 const resultsWording = computed(() => {
   return props.resultsCount === 1 ? 'Artist' : 'Artists';
 });

@@ -1,4 +1,5 @@
 import {useFavoritesStore} from "~/stores/favorites.js";
+import moment from 'moment';
 
 function groupBy( array , fnc ) {
   let groups = {};
@@ -75,6 +76,14 @@ export const useArtistsStore = defineStore('artistsStore', () => {
 
   const matchesAnyOfDates = (artist) => {
     if (!filters.dates.length) return true;
+
+    // Check if any of the dates in filters.dates is a Friday
+    const includesFriday = filters.dates.some(date => moment(date, 'DD/MM/YYYY').day() === 5);
+
+    if(includesFriday && artist.open_friday) {
+      return true;
+    }
+
     if (!artist.days) return false;
 
     return artist.days.some(date => filters.dates.includes(moment(date.day, 'DD/MM/YYYY').date()));
