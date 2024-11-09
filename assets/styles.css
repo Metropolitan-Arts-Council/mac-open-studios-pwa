@@ -450,19 +450,41 @@ button {
 
 .filter-buttons {
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .pill {
+        margin: 0;
+    }
+}
+
+@media (max-width: 750px) {
+    .filters-header {
+        display: flex;
+        padding: 9px 5px;
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 450px) {
-    .filters-header {
-        display: block;
-        padding: 9px 20px;
-        height: auto;
-    }
-    .filter-buttons {
-      margin-bottom: 10px;
-    }
+
     .filters-count {
       text-align: left !important;
+    }
+
+    .filter-buttons {
+        align-items: center;
+        justify-content: center;
+
+
+        .pill {
+            margin: 0;
+            padding: 6px 10px;
+            font-size: 10px;
+            line-height: 12px;
+        }
     }
 }
 
