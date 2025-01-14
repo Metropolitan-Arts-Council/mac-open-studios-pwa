@@ -2,14 +2,23 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: true,
-  modules: ['@pinia/nuxt', "@vite-pwa/nuxt"],
+  modules: ['@pinia/nuxt', "@vite-pwa/nuxt", '@nuxt/scripts'],
+  scripts: {
+    registry: {
+      googleTagManager: {
+        id: 'GTM-PJFMQD2C'
+      }
+    }
+  },
+
   alias: {
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
   },
+
   runtimeConfig: {
     public: {
-      apiDomain: '',
-      apiArtists: '',
+      apiDomain: 'https://www.greenvillearts.com',
+      apiArtists: '/wp-json/artists-api/v1/artists',
       apiPages: '',
       googleMapsKey: '',
       vapidKey: '',
@@ -17,11 +26,13 @@ export default defineNuxtConfig({
       apiNotificationsEmail: '',
     }
   },
+
   app: {
     head: {
       viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
     },
   },
+
   pwa: {
     client: {
       installPrompt: true,
@@ -66,5 +77,5 @@ export default defineNuxtConfig({
       enabled: false,
       type: 'module',
     }
-  }
+  },
 })
